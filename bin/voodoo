@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+var voodoo = require("../lib/voodoo.js");
+
+new Voodoo(process.cwd()).init();
