@@ -19,21 +19,18 @@ verbose cache add [ '.', null ]
 silly cache add: name, spec, args [ undefined, '.', [ '.', null ] ]
 verbose parsed url { pathname: '.', path: '.', href: '.' }
 ERR! Could not install: .
-ERR! Failed to parse json
-ERR! Unexpected token ,
-ERR! File: package.json
-ERR! JSON.parse Failed to parse package.json data.
-ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
-ERR! JSON.parse This is not a bug in npm.
-ERR! JSON.parse Tell the package author to fix their package.json file.
+ERR! Error: ENOENT, no such file or directory 'package.json'
+ERR! Report this *entire* log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
 ERR! 
 ERR! System Darwin 10.8.0
 ERR! command "node" "/usr/local/bin/npm" "install" "-g"
-ERR! cwd /Volumes/data/Users/jeroenb/repos/voodoo
+ERR! cwd /Volumes/data/Users/jeroenb/repos/voodoo/src
 ERR! node -v v0.6.6
 ERR! npm -v 1.1.0-beta-4
-ERR! file package.json
-ERR! code EJSONPARSE
-ERR! message Failed to parse json
-ERR! message Unexpected token ,
+ERR! path package.json
+ERR! code ENOENT
+ERR! message ENOENT, no such file or directory 'package.json'
 verbose exit [ 1, true ]
