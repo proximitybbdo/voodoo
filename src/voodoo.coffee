@@ -16,11 +16,12 @@ root = exports ? this
 root.Voodoo = class Voodoo
   @REGEX_EXTS = /\.(js|coffee)$/
 
-  constructor: ->
+  constructor: (cwd) ->
     # local path from which the binairy is started
-    @log "TODO: get the process.cwd"
+    @path = cwd
+    @log @path
 
-    @path = "."
+
 
     @needles = []
     @needle_dir = @path + '/needles'
@@ -72,6 +73,6 @@ root.run = ->
 
   console.log "Voodoo CLI (#{p._version})"
 
-  vo = new Voodoo
+  vo = new Voodoo process.cwd()
 
 root.run()
