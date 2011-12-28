@@ -17,10 +17,6 @@ root.Voodoo = class Voodoo
   @REGEX_EXTS = /\.(js|coffee)$/
 
   constructor: ->
-    @version = @getVersion()
-
-    @log "Starting #{@version}"
-
     # local path from which the binairy is started
     @log "TODO: get the process.cwd"
 
@@ -35,9 +31,6 @@ root.Voodoo = class Voodoo
     @log "Collect the needles"
     @needles = @paths @needle_dir, Voodoo.REGEX_EXTS
 
-  # read the version from the package.json file
-  getVersion: ->
-    return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version
 
   # logger util func
   log: (log, state = 'debug') ->
@@ -67,4 +60,18 @@ root.Voodoo = class Voodoo
           if stats?.isFile and ext?.test file
             require filepath
 
-vo = new Voodoo
+
+# read the version from the package.json file
+root.getVersion = ->
+  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version
+
+root.run = ->
+  p
+    .version(root.getVersion())
+    .parse(process.argv)
+
+  console.log "Voodoo CLI (#{p._version})"
+
+  vo = new Voodoo
+
+root.run()
