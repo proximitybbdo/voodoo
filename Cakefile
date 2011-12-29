@@ -8,6 +8,10 @@ task 'build', 'build', (options) ->
     throw err if err
     console.log stdout + stderr
 
+  exec 'cp src/needles/*.js lib/needles/', (err, stdout, stderr) ->
+    throw err if err
+    console.log stdout + stderr
+
 task 'test', 'test', (options) ->
   console.log '$ Tast Test'
 

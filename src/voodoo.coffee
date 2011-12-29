@@ -17,19 +17,30 @@ root.Voodoo = class Voodoo
   @REGEX_EXTS = /\.(js|coffee)$/
 
   constructor: (cwd) ->
-    # local path from which the binairy is started
-    @path = cwd
 
-    @log @path
+    # local path from which the binairy is started
+    @path_cwd = cwd
+    
+    @needles_cwd = cwd + '/needles'
+
+    @needles_lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib') + '/needles'
+
+    @log @needles_cwd
+    @log @needles_lib
 
     @needles = []
-    @needle_dir = @path + '/needles'
 
     @stickNeedles()
 
   stickNeedles: ->
     @log "Collect the needles"
-    @needles = @needles.concat @paths @needle_dir, Voodoo.REGEX_EXTS
+
+    @needles = @needles.concat @paths @needles_cwd, Voodoo.REGEX_EXTS
+
+    @log @needles
+
+    @needles = @needles.concat @paths @needles_lib, Voodoo.REGEX_EXTS
+
     @log @needles
 
 

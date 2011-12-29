@@ -1,5 +1,5 @@
 (function() {
-  var Voodoo, fs, path, util, vo;
+  var Voodoo, async, fs, l, p, path, root, util;
 
   util = require('util');
 
@@ -7,47 +7,68 @@
 
   path = require('path');
 
+  async = require('async');
+
+  l = require('logme');
+
+  p = require('commander');
+
   process.title = "voodoo";
 
-  Voodoo = (function() {
+  root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
-    function Voodoo() {
-      this.initialize();
-      this.pinchNeedles();
+  root.Voodoo = Voodoo = (function() {
+
+    Voodoo.REGEX_EXTS = /\.(js|coffee)$/;
+
+    function Voodoo(cwd) {
+      var path_lib;
+      this.path_cwd = cwd;
+      this.needles_cwd = cwd + '/needles';
+      path_lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib');
+      this.needles_lib = path_lib + '/needles';
+      this.log(this.needles_cwd);
+      this.log(this.needles_lib);
+      this.needles = [];
     }
 
-    Voodoo.prototype.initialize = function() {
-      this.path = ".";
-      this.version = this.getVersion();
-      this.needles = [];
-      this.needle_dir = this.path + '/needles';
-      this.needle_exts = /\.(js|coffee)$/;
-      return util.log(this.version);
+    Voodoo.prototype.stickNeedles = function() {
+      this.log("Collect the needles");
+      this.needles = this.needles.concat(this.path_lib + '/needles', Voodoo.REGEX_EXTS);
+      this.log(this.needles);
+      this.needles = this.needles.concat(this.path_cwd(this.needle_dir, Voodoo.REGEX_EXTS));
+      return this.log(this.needles);
     };
 
-    Voodoo.prototype.pinchNeedles = function() {
-      util.log("[voodoo] Collect the needles");
-      return this.needles = this.paths(this.needle_dir, this.needle_exts);
-    };
-
-    Voodoo.prototype.getVersion = function() {
-      return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version;
+    Voodoo.prototype.log = function(log, state) {
+      var msg;
+      if (state == null) state = 'debug';
+      msg = "[Voodoo] " + log;
+      return l.log("info", msg);
     };
 
     Voodoo.prototype.paths = function(dir, ext) {
+      var paths,
+        _this = this;
+      paths = [];
+      try {
+        fs.statSync(dir);
+      } catch (error) {
+        this.log(error);
+        return [];
+      }
       return fs.readdir(dir, function(err, files) {
-        var file, filepath, _i, _len, _results;
         if (err) return err;
-        _results = [];
-        for (_i = 0, _len = files.length; _i < _len; _i++) {
-          file = files[_i];
+        return async.forEach(files, function(file, next) {
+          var filepath;
           filepath = path.join(dir, file);
-          util.log(file);
-          _results.push(fs.stat(filepath, function(err, stats) {
-            if (stats != null ? stats.isFile() : void 0) return util.log(file);
-          }));
-        }
-        return _results;
+          filepath = fs.realpathSync(filepath);
+          return fs.stat(filepath, function(err, stats) {
+            if ((stats != null ? stats.isFile : void 0) && (ext != null ? ext.test(file) : void 0)) {
+              return require(filepath);
+            }
+          });
+        });
       });
     };
 
@@ -55,6 +76,15 @@
 
   })();
 
-  vo = new Voodoo;
+  root.getVersion = function() {
+    return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version;
+  };
+
+  root.run = function() {
+    var vo;
+    p.version(root.getVersion()).parse(process.argv);
+    console.log("Voodoo CLI (" + p._version + ")");
+    return vo = new Voodoo(process.cwd());
+  };
 
 }).call(this);
