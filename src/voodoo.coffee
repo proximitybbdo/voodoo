@@ -19,9 +19,8 @@ root.Voodoo = class Voodoo
   constructor: (cwd) ->
     # local path from which the binairy is started
     @path = cwd
+
     @log @path
-
-
 
     @needles = []
     @needle_dir = @path + '/needles'
@@ -30,7 +29,8 @@ root.Voodoo = class Voodoo
 
   stickNeedles: ->
     @log "Collect the needles"
-    @needles = @paths @needle_dir, Voodoo.REGEX_EXTS
+    @needles = @needles.concat @paths @needle_dir, Voodoo.REGEX_EXTS
+    @log @needles
 
 
   # logger util func
