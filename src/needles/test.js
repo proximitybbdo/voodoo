@@ -1,9 +1,10 @@
 var util = require('util');
+var l = require('logme');
 
 Needle = function() {
   this.version = "0.0.1";
   this.init = function() {
-    util.log("\x1B[32m[needle - oops!! - " + this.version + "]\x1B[0m");
+    l.log("info", "[needle] - test - oops! - " + this.version);
   }
 }
 
