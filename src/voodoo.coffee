@@ -74,5 +74,3 @@ root.run = ->
   console.log "Voodoo CLI (#{p._version})"
 
   vo = new Voodoo process.cwd()
-
-root.run()

@@ -8,3 +8,11 @@ task 'build', 'build', (options) ->
     throw err if err
     console.log stdout + stderr
 
+task 'test', 'test', (options) ->
+  console.log '$ Tast Test'
+
+  invoke 'build'
+
+  voodoo = exec "./bin/voodoo"
+  voodoo.stdout.pipe process.stdout
+  voodoo.stderr.pipe process.stderr
