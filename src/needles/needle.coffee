@@ -8,4 +8,4 @@ module.exports = Needle = class Needle
 
     l.log "info", "[needle] - jslint - " + this.version
 
-new Needle
+@needle = new Needle

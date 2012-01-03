@@ -21,6 +21,8 @@ root.Voodoo = class Voodoo
     # local path from which the binairy is started
     @path_cwd = cwd
 
+    @test = "ok"
+
     # paths to the needles folders, the default one
     # located in the lib folder, the other one
     # is search in the directory where the util is called
@@ -81,4 +83,4 @@ root.run = ->
 
   console.log "Voodoo CLI (#{p._version})"
 
-  vo = new Voodoo process.cwd()
+  @voodoo = new Voodoo process.cwd()
