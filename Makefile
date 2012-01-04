@@ -1,5 +1,7 @@
 TESTS = test/*.js
 
+.PHONY: test clean build
+
 test:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 	--require should \
@@ -9,4 +11,8 @@ test:
 clean:
 	rm -f examples/tmp/*
 
-.PHONY: test clean
+build:
+	@coffee -c -o ./lib ./src
+	@coffee -c -o ./lib ./src/needles/
+	@coffee -c ./test
+
