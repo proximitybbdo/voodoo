@@ -6,9 +6,7 @@ async = require 'async'
 l = require 'logme'
 p = require 'commander'
 
-
 grunt = require 'grunt'
-
 
 # set the process title to `voodoo` for `ps`, `top` and stuff
 process.title = "voodoo"
@@ -18,13 +16,13 @@ root = exports ? this
 
 # The Voodoo class
 root.Voodoo = class Voodoo
-  @REGEX_EXTS = /\.(js|coffee)$/
 
   constructor: (cwd) ->
 
     # local path from which the binairy is started
     @path_cwd = cwd
 
+    # path for the needles
     @needle_dir = __dirname + '/' + 'needles'
 
     # Auto-load tasks
@@ -36,15 +34,12 @@ root.Voodoo = class Voodoo
         return @needle_dir + '/' + task
       .concat @needle_dir
 
-    # TODO: make verbose a CLI param for voodoo
+    # start grunt
     grunt.cli {
       base: @path_cwd,
       config: __dirname + "/../config.js",
       tasks: tasks
-      # verbose: true
     }
-
-    @log "still working"
 
   # logger util func
   log: (log, state = 'debug') ->
@@ -59,6 +54,7 @@ root.getVersion = ->
 root.run = ->
   p
     .version(root.getVersion())
+    .option('-v, --verbose', 'Verbose output')
     .parse(process.argv)
 
   console.log "Voodoo CLI (#{p._version})"
