@@ -1,0 +1,126 @@
+/*===========================================================================
+	© 2011 Proximity BBDO
+	
+  source: Proximity BBDO
+	destination: awesomeness!
+===========================================================================*/
+
+/* ------------------------------------------------------------------------ */
+/* IMPORT 
+/* ------------------------------------------------------------------------ */
+@import url("boilerplate-reset.css");
+@import url("boilerplate-utils.css");
+@import url("specific.css");
+
+/* ------------------------------------------------------------------------ */
+/* COLORAMA 
+/* ------------------------------------------------------------------------ */
+@body: #444;
+@background: #EAECEA;
+@header: #444;
+@red: #ff0000;
+
+/* ------------------------------------------------------------------------ */
+/* FONTS 
+/* ------------------------------------------------------------------------ */
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('../fonts/BEBAS___-webfont.eot');
+    src: url('../fonts/BEBAS___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/BEBAS___-webfont.woff') format('woff'),
+         url('../fonts/BEBAS___-webfont.ttf') format('truetype'),
+         url('../fonts/BEBAS___-webfont.svg#BebasRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* ------------------------------------------------------------------------ */
+/* GENERAL 
+/* STRUCTURE/LAYOUT
+/* ------------------------------------------------------------------------ */
+body {
+  background: @background url(../img/noise.png);
+  font: 20px 'Monaco', 'Courier New', courier, Arial,sans-serif;
+  text-shadow:1px 1px 1px white;
+  line-height:1.6;
+  color: @body;
+  border-top: 5px solid @red;
+}
+
+#wrapper {
+  padding: 20px;
+  width: 850px;
+  margin: 0 auto;
+}
+
+h1 {
+  display: inline;
+  font-size: 100px;
+  text-shadow: 4px 4px 0px #d0d0d0;
+  color: @header + #000;
+  margin-left: -10px;
+
+  span {
+  	font-size: 20px;
+  	text-shadow: none;
+  }
+}
+
+
+h2 { 
+  font-size: 30px;
+  margin: 30px 0 10px 0;
+}
+
+p, code { 
+	margin-bottom:20px; 
+	margin-top: 5px; 
+	display: block;
+}
+
+em {
+  color:#FF3F47;
+  font-style: regular;
+}
+
+a {
+	color: #e4002d;
+	text-decoration: none; 
+	border-bottom: 1px solid #e4002d; 
+}
+
+ul {
+	margin: 0;
+}
+
+.small {
+	width: 70%;
+}
+
+#fancybox-close {
+  border: none;
+}
+
+#screenshot {
+  border: none;
+  width: 200px;
+  display: inline;
+  float: right;
+
+  img {
+  	border: 1px solid #ccc;
+  }
+}
+
+
+
+#footer {
+  margin-top: 100px;
+  color: @body + #666;
+
+  a, a:visited {
+  	color: @body + #333;
+  	border-bottom: none;
+  }
+}
