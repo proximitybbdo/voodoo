@@ -1,14 +1,19 @@
 fs = require 'fs'
 {exec} = require 'child_process'
 
-task 'build', 'build', (options) ->
-  console.log '$ Task Build'
+task 'clean', 'clean', (options) ->
+  console.log '$ Task Clean'
 
-  exec 'coffee -c -o lib src', (err, stdout, stderr) ->
+  exec 'rm -r lib/*', (err, stdout, stderr) ->
     throw err if err
     console.log stdout + stderr
 
-  exec 'coffee -c -o lib src/needles/', (err, stdout, stderr) ->
+task 'build', 'build', (options) ->
+  console.log '$ Task Build'
+
+  invoke 'clean'
+    
+  exec 'coffee -c -o lib src', (err, stdout, stderr) ->
     throw err if err
     console.log stdout + stderr
 
