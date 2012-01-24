@@ -6,6 +6,10 @@ async = require 'async'
 l = require 'logme'
 p = require 'commander'
 
+
+grunt = require 'grunt'
+
+
 # set the process title to `voodoo` for `ps`, `top` and stuff
 process.title = "voodoo"
 
@@ -21,56 +25,32 @@ root.Voodoo = class Voodoo
     # local path from which the binairy is started
     @path_cwd = cwd
 
-    @test = "ok"
+    @needle_dir = __dirname + '/' + 'needles'
 
-    # paths to the needles folders, the default one
-    # located in the lib folder, the other one
-    # is search in the directory where the util is called
-    @needles_cwd = cwd + '/needles'
+    # Auto-load tasks
+    tasks = fs.readdirSync(@needle_dir)
+      .filter (task) =>
+        path =  __dirname + "/needles/" + task
+        return fs.statSync(@needle_dir + '/' + task).isDirectory()
+      .map (task) =>
+        return @needle_dir + '/' + task
+      .concat @needle_dir
 
-    @needles_lib = path.join(path.dirname(fs.realpathSync(__filename)), '../lib') + '/needles'
+    # TODO: make verbose a CLI param for voodoo
+    grunt.cli {
+      base: @path_cwd,
+      config: __dirname + "/../config.js",
+      tasks: tasks
+      # verbose: true
+    }
 
-    @needles = []
-
-    @stickNeedles()
-
-  # collect needles
-  stickNeedles: ->
-    @log "Collect the needles"
-
-    # local lib needle dir
-    @needles = @needles.concat @paths @needles_lib, Voodoo.REGEX_EXTS
-
-    # remote needle dir
-    @needles = @needles.concat @paths @needles_cwd, Voodoo.REGEX_EXTS
+    @log "still working"
 
   # logger util func
   log: (log, state = 'debug') ->
     msg = "[Voodoo] #{log}"
 
     l.log("info", msg)
-
-  # read files in folder
-  paths: (dir, ext, verbose = false) ->
-    paths = []
-
-    try
-      fs.statSync dir
-    catch error
-      @log error if verbose
-      return []
-
-    fs.readdir dir, (err, files) =>
-      return err if err
-
-      # read all the files, keep only js/coffee
-      async.forEach files , (file, next) =>
-        filepath = path.join dir, file
-        filepath = fs.realpathSync filepath
-
-        fs.stat filepath, (err, stats) =>
-          if stats?.isFile and ext?.test file
-            require filepath
 
 # read the version from the package.json file
 root.getVersion = ->

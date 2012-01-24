@@ -12,6 +12,15 @@ task 'build', 'build', (options) ->
     throw err if err
     console.log stdout + stderr
 
+task 'viewjs', 'view compiled js file', (options) ->
+  console.log '$ Task View'
+
+  invoke 'build'
+
+  cat = exec 'cat lib/voodoo.js'
+  cat.stdout.pipe process.stdout
+  cat.stderr.pipe process.stderr
+
 task 'test', 'test', (options) ->
   console.log '$ Task Test'
 

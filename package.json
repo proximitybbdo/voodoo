@@ -27,7 +27,8 @@
     "jslint": ">= 0.0.1",
     "async": ">= 0.1",
     "commander": "0.5.1",
-    "logme": "0.3.0"
+    "logme": "0.3.0",
+    "grunt": "0.2.2"
   },
   "scripts": {
     "test": "make test"
