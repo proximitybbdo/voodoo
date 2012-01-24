@@ -29,6 +29,5 @@ clean:
 
 build:
 	@coffee -c -o ./lib ./src
-	@coffee -c -o ./lib ./src/needles/
 	@coffee -c ./test
 
