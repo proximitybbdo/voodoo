@@ -1,5 +1,9 @@
+## v0.0.41 - 25/01/2012
+* added -b, --base <path> cli param
+* setup testing env
+
 ## v0.0.4 - 25/01/2012
-* added -f, --force cli param
+* added -f, --force cli param, so users can stop on build step errors/warnings
 * cleaned up npm dependencies
 
 ## v0.0.3 - 24/01/2012
