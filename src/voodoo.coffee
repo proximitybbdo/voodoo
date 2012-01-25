@@ -16,7 +16,7 @@ root = exports ? this
 # The Voodoo class
 root.Voodoo = class Voodoo
 
-  constructor: (cwd) ->
+  constructor: (cwd, opts) ->
 
     # local path from which the binairy is started
     @path_cwd = cwd
@@ -37,7 +37,8 @@ root.Voodoo = class Voodoo
     grunt.cli {
       base: @path_cwd,
       config: __dirname + "/../config.js",
-      tasks: tasks
+      tasks: tasks,
+      force: opts.force
     }
 
   # logger util func
@@ -55,8 +56,9 @@ root.run = =>
   p
     .version(root.getVersion())
     .option('-v, --verbose', 'Verbose output')
+    .option('-f, --force', 'A way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
     .parse(process.argv)
 
   console.log "Voodoo CLI (#{p._version})"
 
-  @voodoo = new Voodoo process.cwd()
+  @voodoo = new Voodoo process.cwd(), p
