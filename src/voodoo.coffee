@@ -3,6 +3,7 @@ util = require 'util'
 fs = require 'fs'
 l = require 'logme'
 p = require 'commander'
+path = require 'path'
 
 grunt = require 'grunt'
 
@@ -49,11 +50,11 @@ root.Voodoo = class Voodoo
 root.getVersion = ->
   return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version
 
-root.run = ->
+root.run = =>
+
   p
     .version(root.getVersion())
     .option('-v, --verbose', 'Verbose output')
-    .option('-h, --halt', 'Halt on errors')
     .parse(process.argv)
 
   console.log "Voodoo CLI (#{p._version})"
