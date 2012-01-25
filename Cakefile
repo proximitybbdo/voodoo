@@ -4,7 +4,7 @@ fs = require 'fs'
 task 'clean', 'clean', (options) ->
   console.log '$ Task Clean'
 
-  exec 'rm -r lib/*', (err, stdout, stderr) ->
+  exec 'rm -rf lib/*', (err, stdout, stderr) ->
     throw err if err
     console.log stdout + stderr
 

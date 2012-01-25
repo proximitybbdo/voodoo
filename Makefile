@@ -16,7 +16,13 @@ test-spec:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 	--require should \
 	--reporter spec \
+	$(TESTS)
+
+test-spec-watch:
+	@NODE_ENV=test ./node_modules/.bin/mocha \
+	--require should \
 	--watch \
+	--reporter spec \
 	$(TESTS)
 
 test-dot:
@@ -30,5 +36,3 @@ clean:
 
 build:
 	@coffee -c -o ./lib ./src
-	@coffee -c ./test
-
