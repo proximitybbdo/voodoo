@@ -1,8 +1,6 @@
 # Module dependencies.
 util = require 'util'
 fs = require 'fs'
-path = require 'path'
-async = require 'async'
 l = require 'logme'
 p = require 'commander'
 
@@ -55,6 +53,7 @@ root.run = ->
   p
     .version(root.getVersion())
     .option('-v, --verbose', 'Verbose output')
+    .option('-h, --halt', 'Halt on errors')
     .parse(process.argv)
 
   console.log "Voodoo CLI (#{p._version})"
