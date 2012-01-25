@@ -28,12 +28,7 @@ task 'viewjs', 'view compiled js file', (options) ->
 
 task 'test', 'test', (options) ->
   console.log '$ Task Test'
-
-  invoke 'build'
-
-  exec 'coffee -c -o test test', (err, stdout, stderr) ->
+  
+  exec 'make test', (err, stdoud, stderr) ->
     throw err if err
     console.log stdout + stderr
-  
-  exec 'make test', (err) ->
-    throw err if err

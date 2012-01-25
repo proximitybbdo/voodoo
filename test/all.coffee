@@ -2,7 +2,7 @@
 should = require 'should'
 
 # voodoo for, erm, the testing :P
-voodoo = require(__dirname + '/../lib/voodoo.js').run()
+voodoo = require(__dirname + '/../lib/voodoo').run()
 
 # needle, obviously
 needle = require(__dirname + '/../lib/needle.js')

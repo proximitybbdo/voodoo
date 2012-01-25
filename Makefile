@@ -1,4 +1,4 @@
-TESTS = test/*.js
+TESTS = test/*.coffee
 
 .PHONY: test-landing test-spec test-dot clean build
 
@@ -16,6 +16,7 @@ test-spec:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
 	--require should \
 	--reporter spec \
+	--watch \
 	$(TESTS)
 
 test-dot:
