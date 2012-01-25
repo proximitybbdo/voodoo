@@ -1,3 +1,7 @@
+## v0.0.4 - 25/01/2012
+* added -f, --force cli param
+* cleaned up npm dependencies
+
 ## v0.0.3 - 24/01/2012
 * added -v, --verbose cli param
 * added basic tasks (lint, concat)
