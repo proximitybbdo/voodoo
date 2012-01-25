@@ -4,7 +4,7 @@ TESTS = test/*.coffee
 
 test-all: test-landing test-spec test-dot
 
-test: test-spec
+test: build test-spec
 
 test-landing:
 	@NODE_ENV=test ./node_modules/.bin/mocha \
@@ -36,3 +36,4 @@ clean:
 
 build:
 	@coffee -c -o ./lib ./src
+	@coffee -c ./test
