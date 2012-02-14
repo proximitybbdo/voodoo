@@ -14,7 +14,7 @@ process.title = "voodoo"
 root = exports ? this
 
 # the version
-root.version = '0.0.41'
+root.version = '0.0.5'
 
 # The Voodoo class
 root.Voodoo = class Voodoo
