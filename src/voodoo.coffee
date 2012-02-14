@@ -13,27 +13,37 @@ process.title = "voodoo"
 # protect from prying eyes
 root = exports ? this
 
+# the version
+root.version = '0.0.41'
+
 # The Voodoo class
 root.Voodoo = class Voodoo
 
   constructor: (cwd, opts) ->
 
     # the version, from the opts and thus, from the package.json
-    @version = opts._version
+    if opts? and opts._version? then @version = opts._version else @version = root.version
 
     # local path from which the binairy is started
-    # if opts.base is passed, we need to check if 
-    # it's relative or absolute
+    # if opts.base is passed, we need to check if it's relative or absolute
     # absolute paths always start with `/` right?
-    if opts.base?
-      @path_cwd = if opts.base.substring(0, 1) is "/"  then opts.base else cwd + '/' + opts.base
+    if opts? and opts.base?
+      @cwd = if opts.base.substring(0, 1) is "/"  then opts.base else cwd + '/' + opts.base
     else
-      @path_cwd = cwd
+      @cwd = cwd
+
+    console.log(cwd)
 
     # path for the needles
     @needle_dir = __dirname + '/' + 'needles'
 
-    # Auto-load tasks
+    # force pass errors
+    if opts? and opts.force? then @force = opts.force else @force = false
+
+    # config file
+    if opts? and opts.config? then @config = opts.config else @config = __dirname + '/../config.js'
+
+    # auto-load tasks
     tasks = fs.readdirSync(@needle_dir)
       .filter (task) =>
         path =  __dirname + "/needles/" + task
@@ -43,12 +53,12 @@ root.Voodoo = class Voodoo
       .concat @needle_dir
 
     # start grunt
-    # grunt.cli {
-    #   base: @path_cwd,
-    #   config: __dirname + "/../config.js",
-    #   tasks: tasks,
-    #   force: opts.force
-    # }
+    grunt.cli {
+      base: @cwd,
+      config: @config
+      tasks: tasks,
+      force: @force
+    }
 
   # logger util func
   log: (log, state = 'debug') ->
@@ -56,16 +66,14 @@ root.Voodoo = class Voodoo
 
     l.log("info", msg)
 
-# read the version from the package.json file
-root.getVersion = ->
-  return JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'))).version
-
-root.run = =>
+# cli only
+root.cli = =>
   p
-    .version(root.getVersion())
+    .version(root.version)
     .option('-b, --base <path>', 'working directory for your site (where `assets` folder is in )')
     .option('-v, --verbose', 'verbose output')
     .option('-f, --force', 'a way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
+    .option('-c, --config', 'an optional config.js file, replacing the build in config.js')
     .parse(process.argv)
 
-  @voodoo = new Voodoo process.cwd(), p
+  new Voodoo process.cwd(), p
