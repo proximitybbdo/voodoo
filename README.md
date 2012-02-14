@@ -22,6 +22,9 @@ Build system for our sites. When invoked, it performs so called 'needles', which
 
 [![Build Status](https://secure.travis-ci.org/proximitybbdo/voodoo.png)](http://travis-ci.org/proximitybbdo/voodoo)
 
+Install
+-------
+`npm install -g voodoo`
 
 Usage
 -----
