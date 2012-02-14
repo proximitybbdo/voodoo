@@ -5,13 +5,13 @@ config.init({
   },
 
   concat: {
+    // Application files
+    "assets/js/app.js": ["assets/js/*.js"],
+
     // The core library files
     "assets/js/libs.js": [
       "assets/js/libs/*.js"
     ],
-
-    // Application files
-    "assets/js/app.js": ["assets/js/*.js"],
   },
 
   min: {
