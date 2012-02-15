@@ -1,6 +1,6 @@
 {
   "name": "voodoo",
-  "version": "0.0.62",
+  "version": "0.0.7",
   "description": "website checker/optimizer/cleaner",
   "repository": {
     "type": "git",
@@ -8,12 +8,12 @@
   },
   "keywords": [
     "continuous integration",
-  "jslint",
-  "javascript",
-  "minifier",
-  "compiler",
-  "ci"
-    ],
+    "jslint",
+    "javascript",
+    "minifier",
+    "compiler",
+    "ci"
+  ],
   "author": "Proximity BBDO <online@proximity.bbdo.be> (http://github.com/proximitybbdo)",
   "bin": {
     "voodoo": "./bin/voodoo"
