@@ -1,4 +1,7 @@
-## v0.0.6 - 14/02/2012
+## v0.0.61 - 15/02/2012
+* updated the options for the `lint` task
+
+## v0.0.6 - 15/02/2012
 * added `clean` task, should work in harmony with lint/concat, to get prevent recursion
 
 ## v0.0.51 - 14/02/2012
