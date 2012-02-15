@@ -6,12 +6,14 @@ config.init({
   lint: {
     files: ["assets/js/*.js"]
   },
+
   jshint: {
     options: {
+      asi: false,     // semicolons are ok
       curly: false,   // do not require curly braces
       eqeqeq: true,   // must use `===` and `!==`
       immed: true,
-      latedef: true,
+      latedef: false,
       newcap: false,  // cap How YoU wAnT
       noarg: true,    // argument.caller and argument.callee are old
       noempty: true,
@@ -23,7 +25,8 @@ config.init({
       browser: true
     },
     globals: {
-      jQuery: true
+      jquery: true,
+      '$': true
     }
   },
 

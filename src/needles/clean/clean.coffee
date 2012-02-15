@@ -43,5 +43,3 @@ task.registerHelper "remove", (f) =>
     verbose.writeln 'File "' + f + '" deleted.'
   catch e
     log.writeln 'File "' + f + '" could not be deleted.'
-
-

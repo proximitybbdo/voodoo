@@ -1,3 +1,6 @@
+## v0.0.62 - 15/02/2012
+* updated the options for the `lint` task
+
 ## v0.0.61 - 15/02/2012
 * updated the options for the `lint` task
 
