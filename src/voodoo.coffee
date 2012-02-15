@@ -41,7 +41,7 @@ root.Voodoo = class Voodoo
     if opts? and opts.force? then @force = opts.force else @force = false
 
     # config file
-    if opts? and opts.config? then @config = opts.config else @config = __dirname + '/../config.js'
+    if opts? and opts.config? then @config = opts.config else @config = __dirname + '/../voodoo.js'
 
     # auto-load tasks
     tasks = fs.readdirSync(@needle_dir)
@@ -73,7 +73,7 @@ root.cli = =>
     .option('-b, --base <path>', 'working directory for your site (where `assets` folder is in )')
     .option('-v, --verbose', 'verbose output')
     .option('-f, --force', 'a way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
-    .option('-c, --config', 'an optional config.js file, replacing the build in config.js')
+    .option('-c, --custom', 'an custom voodoo.js file, replacing the build in voodoo.js, with your own settings')
     .parse(process.argv)
 
   new Voodoo process.cwd(), p
