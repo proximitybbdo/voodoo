@@ -1,3 +1,10 @@
+## v0.0.51 - 14/02/2012
+* small fix
+
+## v0.0.5 - 02/02/2012
+* added more config params (-c, -V, -f)
+* overal cleanup
+
 ## v0.0.41 - 25/01/2012
 * added -b, --base <path> cli param
 * setup testing env

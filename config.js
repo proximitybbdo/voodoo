@@ -1,4 +1,7 @@
 config.init({
+  clean: {
+    files: ["assets/js/libs.js", "assets/js/app.js"]  
+  },
 
   lint: {
     files: ["assets/js/*.js"]
@@ -11,7 +14,7 @@ config.init({
     // The core library files
     "assets/js/libs.js": [
       "assets/js/libs/*.js"
-    ],
+    ]
   },
 
   min: {
@@ -22,4 +25,4 @@ config.init({
 });
 
 // Run the following tasks...
-task.registerTask("default", "lint:files concat min");
+task.registerTask("default", "clean lint:files concat min");

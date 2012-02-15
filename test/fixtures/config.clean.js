@@ -1,6 +1,6 @@
 config.init({
   clean: {
-    files: ["assets/js/libs.js", "assets/js/app.js"]  
+    files: ['assets/js/libs.js', 'assets/js/app.js']  
   },
 
   concat: {
@@ -11,8 +11,9 @@ config.init({
     "assets/js/libs.js": [
       "assets/js/libs/*.js"
     ]
-  }
+  },
+
 });
 
 // Run the following tasks...
-task.registerTask("default", "clean concat");
+task.registerTask("default", "concat");
