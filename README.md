@@ -5,7 +5,7 @@ Build system for our sites. When invoked, it performs so called 'needles', which
 
 It is build on top of the wonderful [grunt](https://github.com/cowboy/grunt).
 
-Since Voodoo was primary build for our own projects, the default **`voodoo.js`** config file (this is actually just the grunt `config.js` file) will execute a series of tasks tailor made for our framework. This following needles are stung:
+Since Voodoo was primary build for our own projects, the default **voodoo.js** config file (this is actually just the grunt `config.js` file) will execute a series of tasks tailor made for our framework. This following needles are stung:
 
 task.registerTask("default", "clean lint:files concat min");
 
