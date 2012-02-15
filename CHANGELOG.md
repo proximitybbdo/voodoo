@@ -1,3 +1,7 @@
+## v0.0.7 - 15/02/2012
+* updated the readme
+* changed the -c parameter so you don't need to pass a file anymore. Now all config is done inside of voodoo.js, fixed
+
 ## v0.0.62 - 15/02/2012
 * updated the options for the `lint` task
 
