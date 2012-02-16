@@ -1,6 +1,7 @@
 ## v0.0.8 - 16/02/2012
 * remove --custom param, searching for voodoo.js automagically
 * added `_gaq` to jshint globals
+* added `pulverize` needle
 
 ## v0.0.71 - 15/02/2012
 * fixing bug with new --custom param

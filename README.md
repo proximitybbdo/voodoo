@@ -12,6 +12,7 @@ Since Voodoo was primary build for our own projects, the default **voodoo.js** c
 * the **lint** needle, checking all `*.js` files inside `assets/js/` (**NOT** inside the subsequent `libs` folder) against [jshint](http://www.jshint.com/). Options are set in the `voodoo.js`
 * the **concat** needle, concatenating `assets/js/*.js` into `assets/js/app.js` (which is why we needed the **clean** needle), and all `assets/js/libs/*.js` files into `assets/js/libs.js`
 * the **min** needle, minifying the previous two `js` files
+* the **pulverize** needle, squeezing your images to save bytes
 
 ## Install
 
