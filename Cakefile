@@ -18,9 +18,10 @@ task 'build', 'build', (options) ->
     console.log stdout + stderr
 
 task 'viewjs', 'view compiled js file', (options) ->
-  console.log '$ Task View'
 
   invoke 'build'
+
+  console.log '$ Task View'
 
   cat = exec 'cat lib/voodoo.js'
   cat.stdout.pipe process.stdout
