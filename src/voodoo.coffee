@@ -32,10 +32,10 @@ root.Voodoo = class Voodoo
     @needle_dir = __dirname + '/' + 'needles'
 
     # force pass errors
-    # if opts? and opts.force? then @force = opts.force else @force = false
+    if opts? and opts.force? then @force = opts.force else @force = false
 
     # cwd is a path, a path ends with a trailing slash, period!
-    # (@cwd += '/') if @cwd.substring(@cwd.length - 1) != '/'
+    (@cwd += '/') if @cwd.substring(@cwd.length - 1) != '/'
 
     # where our gruntfile will be
     @config = @cwd + 'voodoo.js'
@@ -59,7 +59,7 @@ root.Voodoo = class Voodoo
       .concat @needle_dir
 
     # start grunt
-    grunt.tasks({}, { config: @config, base: @cwd, tasks: needles })
+    grunt.tasks({}, { config: @config, base: @cwd, tasks: needles, force: @force })
 
 # cli only
 root.cli = =>
