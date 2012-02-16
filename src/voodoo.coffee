@@ -38,8 +38,15 @@ root.Voodoo = class Voodoo
     # force pass errors
     if opts? and opts.force? then @force = opts.force else @force = false
 
-    # config file
-    if opts? and opts.custom? then @config = @cwd + '/voodoo.js' else @config = __dirname + '/../voodoo.js'
+    # cwd is a path, a path ends with a trailing slash, period!
+    (@cwd += '/') if @cwd.substring(@cwd.length - 1) != '/'
+
+    # here we generate a default voodoo.js in the active dir
+    # TODO: check if there already is a file!
+    # for now there seems to be a bug in fs.statSync
+    # when the target file is not present, it returns Nan Nan
+    configOriginal = fs.readFileSync(__dirname + '/../voodoo.js')
+    configCustom = fs.writeFileSync(@cwd + 'voodoo.js', configOriginal)
 
     # auto-load tasks
     tasks = fs.readdirSync(@needle_dir)
@@ -57,6 +64,7 @@ root.Voodoo = class Voodoo
     #   tasks: tasks,
     #   force: @force
     # }
+    grunt.tasks(tasks, { config: @config, base: @cwd })
 
   # logger util func
   log: (log, state = 'debug') ->
