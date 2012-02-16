@@ -19,10 +19,6 @@ root.version = file.readJson(path.join(__dirname, '../package.json')).version
 root.Voodoo = class Voodoo
 
   constructor: (cwd, opts) ->
-
-    # the version, from the opts and thus, from the package.json
-    if opts? and opts._version? then @version = opts._version else @version = root.version
-
     # local path from which the binairy is started
     # if opts.base is passed, we need to check if it's relative or absolute
     # absolute paths always start with `/` right?
