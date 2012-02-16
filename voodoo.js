@@ -9,7 +9,7 @@ config.init({
 
   jshint: {
     options: {
-      asi: true,        // semicolons are ok
+      asi: true,      // semicolons are ok
       curly: false,   // do not require curly braces
       eqeqeq: true,   // must use `===` and `!==`
       immed: true,
