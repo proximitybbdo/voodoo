@@ -29,4 +29,3 @@ The following parameters are available
 * **-b, --base <path>** - working directory for your site (where `assets` folder is in )
 * **-v, --verbose** - verbose output
 * **-f, --force** - a way to force your way past warnings. Want a suggestion? Don't use this option, fix your code
-* **--custom** - an custom voodoo.js file, replacing the build in voodoo.js
