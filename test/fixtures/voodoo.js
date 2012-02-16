@@ -3,6 +3,16 @@ config.init({
     files: ["assets/js/libs.js", "assets/js/app.js"]  
   },
 
+  pulverize: {
+    options: {
+      directory: 'assets/img',  // relative from voodoo base path
+      dry: false,               // dryrun test  
+      quiet: false,             // force quiet run
+      recursive: false,         // Run recursively
+      verbose: false            // Run verbosely
+    }
+  },
+
   lint: {
     files: ["assets/js/*.js"]
   },
@@ -50,4 +60,5 @@ config.init({
 });
 
 // Run the following tasks...
-task.registerTask("default", "clean lint:files concat min");
+// task.registerTask("default", "clean lint:files concat min");
+task.registerTask("default", "pulverize");
