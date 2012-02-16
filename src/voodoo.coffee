@@ -15,7 +15,6 @@ root = exports ? this
 
 # the version
 root.version = file.readJson(path.join(__dirname, '../package.json')).version
-console.log(root.version)
 
 # The Voodoo class
 root.Voodoo = class Voodoo
