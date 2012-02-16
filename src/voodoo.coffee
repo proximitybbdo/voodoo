@@ -4,8 +4,6 @@ fs = require 'fs'
 p = require 'commander'
 path = require 'path'
 
-winston = require 'winston'
-
 # the hard worker
 grunt = require 'grunt'
 
@@ -60,35 +58,8 @@ root.Voodoo = class Voodoo
           return @needle_dir + '/' + needle
       .concat @needle_dir
 
-
-    winston.add(winston.transports.File, { filename: 'somefile.log' })
-
     # start grunt
-    # grunt.tasks({}, { config: @config, base: @cwd, tasks: needles })
-
-    console.log('a')
-    console.log('b')
-
-    @unhook()
-
-    console.log('c')
-    console.log('d')
-
-  hook_stdout: (callback) ->
-    old_write = process.stdout.write
-
-    process.stdout.write = ((write) ->
-      return (string, encoding, fd) ->
-        write.apply(process.stdout, arguments)
-        winston.log('info', string)
-        callback(string, encoding, fd)
-    )(process.stdout.write)
-
-    return () => process.stdout.write = old_write
-
-  unhook: ->
-    @hook_stdout (string, encoding, fd) ->
-      util.debug('d')
+    grunt.tasks({}, { config: @config, base: @cwd, tasks: needles })
 
 # cli only
 root.cli = =>

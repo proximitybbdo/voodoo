@@ -25,8 +25,10 @@ config.init({
       browser: true
     },
     globals: {
-      'jquery': true,
-      '$': true
+      jquery: true,
+      $: true,
+      _gaq: true,
+      log: true
     }
   },
 
