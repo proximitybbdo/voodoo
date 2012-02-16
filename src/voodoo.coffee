@@ -51,12 +51,12 @@ root.Voodoo = class Voodoo
       .concat @needle_dir
 
     # start grunt
-    grunt.cli {
-      base: @cwd,
-      config: @config,
-      tasks: tasks,
-      force: @force
-    }
+    # grunt.cli {
+    #   base: @cwd,
+    #   config: @config,
+    #   tasks: tasks,
+    #   force: @force
+    # }
 
   # logger util func
   log: (log, state = 'debug') ->
