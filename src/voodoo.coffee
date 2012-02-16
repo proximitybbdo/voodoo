@@ -68,7 +68,6 @@ root.cli = =>
     .option('-b, --base <path>', 'working directory for your site (where `assets` folder is in )')
     .option('-v, --verbose', 'verbose output')
     .option('-f, --force', 'a way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
-    .option('--custom', 'an custom voodoo.js file, replacing the build in voodoo.js, with your own settings')
     .parse(process.argv)
 
   new Voodoo process.cwd(), p
