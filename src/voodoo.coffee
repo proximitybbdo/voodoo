@@ -44,13 +44,13 @@ root.Voodoo = class Voodoo
     configOriginal = fs.readFileSync(__dirname + '/../voodoo.js')
     configCustom = fs.writeFileSync(@cwd + 'voodoo.js', configOriginal)
 
-    # auto-load tasks
-    tasks = fs.readdirSync(@needle_dir)
-      .filter (task) =>
-        path =  __dirname + "/needles/" + task
-        return fs.statSync(@needle_dir + '/' + task).isDirectory()
-      .map (task) =>
-        return @needle_dir + '/' + task
+    # auto-load default tasks
+    needles = fs.readdirSync(@needle_dir)
+      .filter (needle) =>
+        path =  __dirname + "/needles/" + needle
+        return fs.statSync(@needle_dir + '/' + needle).isDirectory()
+      .map (needle) =>
+        return @needle_dir + '/' + needle
       .concat @needle_dir
 
     # start grunt
@@ -60,7 +60,7 @@ root.Voodoo = class Voodoo
     #   tasks: tasks,
     #   force: @force
     # }
-    grunt.tasks(tasks, { config: @config, base: @cwd })
+    grunt.tasks(needles, { config: @config, base: @cwd })
 
 # cli only
 root.cli = =>
