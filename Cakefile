@@ -9,9 +9,9 @@ task 'clean', 'clean', (options) ->
     console.log stdout + stderr
 
 task 'build', 'build', (options) ->
-  console.log '$ Task Build'
-
   invoke 'clean'
+
+  console.log '$ Task Build'
     
   exec 'coffee -c -o lib src', (err, stdout, stderr) ->
     throw err if err
