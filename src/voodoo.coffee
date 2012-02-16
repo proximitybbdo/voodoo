@@ -1,7 +1,6 @@
 # Module dependencies.
 util = require 'util'
 fs = require 'fs'
-l = require 'logme'
 p = require 'commander'
 path = require 'path'
 
@@ -65,12 +64,6 @@ root.Voodoo = class Voodoo
     #   force: @force
     # }
     grunt.tasks(tasks, { config: @config, base: @cwd })
-
-  # logger util func
-  log: (log, state = 'debug') ->
-    msg = "[Voodoo] #{log}"
-
-    l.log("info", msg)
 
 # cli only
 root.cli = =>
