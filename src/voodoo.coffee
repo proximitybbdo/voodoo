@@ -4,6 +4,7 @@ fs = require 'fs'
 p = require 'commander'
 path = require 'path'
 
+# the hard worker
 grunt = require 'grunt'
 
 # set the process title to `voodoo` for `ps`, `top` and stuff
