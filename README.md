@@ -23,10 +23,13 @@ Run `voodoo -h` afterwards to get more help.
 
 ## Usage
 
-Inside your website directory, just execute `voodoo` without params to perform the basic tasks, as predefined for our framework (see `config.js` inside the repo)
+Inside your website directory, just execute `voodoo` without params to perform the basic tasks, as predefined for our framework (see `config.js` inside the repo). The default voodoo.js will be created at the path where you execute the command, and is very similar to the **gruntfile** found in [grunt](https://github.com/cowboy/grunt).
 
-The following parameters are available
+Optionally, you can run `voodoo -g` or `voodoo --generate` to create the default `voodoo.js` file without running **voodoo** itself. This gives you the change to first change the config.
+
+#### The following parameters are available
 
 * **-b, --base <path>** - working directory for your site (where `assets` folder is in )
 * **-v, --verbose** - verbose output
 * **-f, --force** - a way to force your way past warnings. Want a suggestion? Don't use this option, fix your code
+* **-g, --generate** - generate a default `voodoo.js` file

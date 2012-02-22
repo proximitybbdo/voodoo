@@ -40,20 +40,17 @@ root.Voodoo = class Voodoo
     # where our gruntfile will be
     @config = @cwd + 'voodoo.js'
 
-    # here we generate a default voodoo.js in the active dir
-    # TODO: check if there already is a file!
-    # for now there seems to be a bug in fs.statSync
-    # when the target file is not present, it returns Nan Nan
-    #
-    # the original file
-
-    stats = fs.statSync(__dirname + '/../voodoo.js')
-    console.log stats.isFile()
-
-    # buff = fs.readFileSync(__dirname + '/../voodoo.js')
-    # fs.writeFileSync(@config, buff)
-
-
+    # if -g | --generate is passed, the fun stops here
+    if opts? and opts.generate?
+      if path.existsSync(@config)
+        console.log 'voodoo.js exists, nothing generated'
+      else
+        @generateConfig(@config)
+      return
+    # else, we just check for a default voodoo.js file, if not, 
+    # generate one and roll like that
+    else
+      @generateConfig(@config)
 
     # auto-load default tasks
     needles = fs.readdirSync(@needle_dir)
@@ -67,6 +64,14 @@ root.Voodoo = class Voodoo
     # start grunt
     grunt.tasks({}, { config: @config, base: @cwd, tasks: needles, force: @force })
 
+  # here we generate a default voodoo.js in the active dir
+  # if there is no voodoo.js present
+  generateConfig: (filepath) ->
+    if !path.existsSync(filepath)
+      buff = fs.readFileSync(__dirname + '/../voodoo.js')
+      fs.writeFileSync(filepath, buff)
+      console.log 'Generated default voodoo.js'
+
 # cli only
 root.cli = =>
   p
@@ -74,6 +79,7 @@ root.cli = =>
     .option('-b, --base <path>', 'working directory for your site (where `assets` folder is in )')
     .option('-v, --verbose', 'verbose output')
     .option('-f, --force', 'a way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
+    .option('-g, --generate', 'generate a default voodoo.js file')
     .parse(process.argv)
 
   new Voodoo process.cwd(), p
