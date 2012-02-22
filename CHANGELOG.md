@@ -1,3 +1,7 @@
+## v0.0.9 - 22/02/2012
+* added -g | --generate option to generate a default **voodoo.js** file without running `voodoo` itself
+* fixed check for existance of default **voodoo.js** file at working directory
+
 ## v0.0.8 - 16/02/2012
 * remove --custom param, searching for voodoo.js automagically
 * added `_gaq` to jshint globals
