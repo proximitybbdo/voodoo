@@ -46,8 +46,14 @@ root.Voodoo = class Voodoo
     # when the target file is not present, it returns Nan Nan
     #
     # the original file
-    buff = fs.readFileSync(__dirname + '/../voodoo.js')
-    fs.writeFileSync(@config, buff)
+
+    stats = fs.statSync(__dirname + '/../voodoo.js')
+    console.log stats.isFile()
+
+    # buff = fs.readFileSync(__dirname + '/../voodoo.js')
+    # fs.writeFileSync(@config, buff)
+
+
 
     # auto-load default tasks
     needles = fs.readdirSync(@needle_dir)

@@ -61,4 +61,4 @@ config.init({
 
 // Run the following tasks...
 // task.registerTask("default", "clean lint:files concat min");
-task.registerTask("default", "pulverize");
+task.registerTask("default", "clean lint:files concat min pulverize");
