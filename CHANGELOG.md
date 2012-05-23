@@ -1,3 +1,6 @@
+## v0.0.10 - 22/02/2012
+* updated node module versions
+
 ## v0.0.9 - 22/02/2012
 * added -g | --generate option to generate a default **voodoo.js** file without running `voodoo` itself
 * fixed check for existance of default **voodoo.js** file at working directory
