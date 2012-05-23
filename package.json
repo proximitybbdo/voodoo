@@ -21,7 +21,7 @@
   "dependencies": {
     "coffee-script": "1.2.0",
     "ready.js": "2.0.3",
-    "jslint": ">= 0.0.1",
+    "jslint": "0.1.6",
     "commander": "0.6",
     "grunt": "0.3.5",
     "pulverizr": "0.7.0"
