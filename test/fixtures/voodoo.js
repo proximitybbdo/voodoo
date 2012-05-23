@@ -14,7 +14,7 @@ config.init({
   },
 
   lint: {
-    files: ["assets/js/*.js"]
+    files: ["assets/js/!(plugins)*.js"]
   },
 
   jshint: {
@@ -44,7 +44,7 @@ config.init({
 
   concat: {
     // Application files
-    "assets/js/app.js": ["assets/js/*.js"],
+    "assets/js/app.js": ["assets/js/!(plugins)*.js"],
 
     // The core library files
     "assets/js/libs.js": [
@@ -61,4 +61,5 @@ config.init({
 
 // Run the following tasks...
 // task.registerTask("default", "clean lint:files concat min");
-task.registerTask("default", "clean lint:files concat min pulverize");
+// task.registerTask("default", "clean lint:files concat min pulverize");
+task.registerTask("default", "concat");
