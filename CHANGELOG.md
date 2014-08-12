@@ -1,3 +1,6 @@
+## v0.0.12 - 23/07/2012
+* back to grunt basic
+
 ## v0.0.10 - 22/02/2012
 * updated node module versions
 

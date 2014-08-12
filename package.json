@@ -1,6 +1,6 @@
 {
   "name": "voodoo",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "website checker/optimizer/cleaner",
   "repository": {
     "type": "git",
@@ -22,8 +22,9 @@
     "coffee-script": "1.2.0",
     "ready.js": "2.0.3",
     "jslint": "0.1.6",
-    "commander": "0.6",
-    "grunt": "0.3.5",
+    "commander": "1.0.0",
+    "grunt": "0.3.11",
+    "grunt-contrib": "0.1.1",
     "pulverizr": "0.7.0"
   },
   "devDependencies": {

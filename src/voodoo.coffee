@@ -4,9 +4,6 @@ fs = require 'fs'
 p = require 'commander'
 path = require 'path'
 
-# the hard worker
-grunt = require 'grunt'
-
 # set the process title to `voodoo` for `ps`, `top` and stuff
 process.title = "voodoo"
 
@@ -14,7 +11,8 @@ process.title = "voodoo"
 root = exports ? this
 
 # the version
-root.version = file.readJson(path.join(__dirname, '../package.json')).version
+pjson = require '../package.json'
+root.version = pjson.version
 
 # The Voodoo class
 root.Voodoo = class Voodoo
@@ -28,9 +26,6 @@ root.Voodoo = class Voodoo
     else
       @cwd = cwd
 
-    # path for the needles
-    @needle_dir = __dirname + '/' + 'needles'
-
     # force pass errors
     if opts? and opts.force? then @force = opts.force else @force = false
 
@@ -38,39 +33,21 @@ root.Voodoo = class Voodoo
     (@cwd += '/') if @cwd.substring(@cwd.length - 1) != '/'
 
     # where our gruntfile will be
-    @config = @cwd + 'voodoo.js'
+    @gruntfile = @cwd + 'grunt.js'
 
-    # if -g | --generate is passed, the fun stops here
-    if opts? and opts.generate?
-      if path.existsSync(@config)
-        console.log 'voodoo.js exists, nothing generated'
-      else
-        @generateConfig(@config)
-      return
-    # else, we just check for a default voodoo.js file, if not, 
-    # generate one and roll like that
+    if path.existsSync(@gruntfile)
+      console.log 'grunt.js exists, nothing generated'
     else
-      @generateConfig(@config)
-
-    # auto-load default tasks
-    needles = fs.readdirSync(@needle_dir)
-      .filter (needle) =>
-        path =  __dirname + "/needles/" + needle
-        return fs.statSync(@needle_dir + '/' + needle).isDirectory()
-      .map (needle) =>
-          return @needle_dir + '/' + needle
-      .concat @needle_dir
-
-    # start grunt
-    grunt.tasks({}, { config: @config, base: @cwd, tasks: needles, force: @force })
+      @generateConfig(@gruntfile)
+    return
 
   # here we generate a default voodoo.js in the active dir
   # if there is no voodoo.js present
   generateConfig: (filepath) ->
     if !path.existsSync(filepath)
-      buff = fs.readFileSync(__dirname + '/../voodoo.js')
+      buff = fs.readFileSync(__dirname + '/../grunt.js')
       fs.writeFileSync(filepath, buff)
-      console.log 'Generated default voodoo.js'
+      console.log 'Generated default grunt.js'
 
 # cli only
 root.cli = =>
@@ -79,7 +56,6 @@ root.cli = =>
     .option('-b, --base <path>', 'working directory for your site (where `assets` folder is in )')
     .option('-v, --verbose', 'verbose output')
     .option('-f, --force', 'a way to force your way past warnings. Want a suggestion? Don\'t use this option, fix your code')
-    .option('-g, --generate', 'generate a default voodoo.js file')
     .parse(process.argv)
 
   new Voodoo process.cwd(), p
